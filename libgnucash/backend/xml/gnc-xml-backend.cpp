@@ -767,7 +767,7 @@ GncXmlBackend::backup_file()
     }
 
     auto timestamp = gnc_date_timestamp ();
-    auto backup = m_fullpath + "." + timestamp + GNC_DATAFILE_EXT;
+    auto backup = m_fullpath + "." + timestamp + GNC_BACKUPFILE_EXT ;
     g_free (timestamp);
 
     return link_or_make_backup (datafile, backup);
@@ -800,6 +800,7 @@ GncXmlBackend::remove_old_files ()
         if (! (g_str_has_suffix (dent, ".LNK") ||
                g_str_has_suffix (dent, ".xac") /* old data file extension */ ||
                g_str_has_suffix (dent, GNC_DATAFILE_EXT) ||
+               g_str_has_suffix (dent, GNC_BACKUPFILE_EXT) ||
                g_str_has_suffix (dent, GNC_LOGFILE_EXT)))
             continue;
 
